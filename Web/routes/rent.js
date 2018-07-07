@@ -43,18 +43,18 @@ router.get("/rent/:id/approve",middleware.isAdmin, function(req, res){
             inventory.findByIdAndUpdate(foundInventory['_id'], {"quantity": foundInventory['quantity']-1});
             var mailOptions = {
                 from: 'Support'+'<hello@jaysinha.me>', 
-                to: req.body.email, 
+                to: 'hello@jaysinha.me', 
                 subject: 'Booking Confirmed: ' + updatedRent['_id'], 
-                html: 'Name: <b>' + foundUser['username'] + '</b><br>Password: <b>'+ foundUser['password'] + '</b>'// html body
+                html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
             };
 
             var mailOptions2 = {
                 from: 'Support'+'<hello@jaysinha.me>', 
-                to: req.body.email, 
-                subject: 'Booking Confirmed: ' + updatedRent['_id'], 
-                html: 'Username: <b>' + foundUser['username'] + '</b><br>Password: <b>'+ foundUser['password'] + '</b>'// html body
+                to: updatedRent['email'], 
+                subject: 'Booking Approved: ' + updatedRent['_id'], 
+                html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
             };
-            res.redirect("/rent/"+updatedRent['_id']);
+            res.redirect("/rent");
         }
     }); 
 }
@@ -118,11 +118,10 @@ router.get("/rent/:id/cancel", middleware.isAdmin, function(req, res){
             } else {
                 var mailOptions = {
                     from: 'Support'+'<hello@jaysinha.me>', 
-                    to: req.body.email, 
+                    to: updatedRent['email'], 
                     subject: 'Booking Cancelled: ' + updatedRent['_id'], 
-                    html: 'Name: <b>' + foundUser['username'] + '</b><br>Password: <b>'+ foundUser['password'] + '</b>'// html body
+                    html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
                 };
-    
                 res.redirect("/rent");
             }
         }
@@ -132,7 +131,7 @@ router.get("/rent/:id/cancel", middleware.isAdmin, function(req, res){
 }
         }
         });
-    
+    });
 });
 
 
