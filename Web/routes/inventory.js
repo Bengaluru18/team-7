@@ -2,9 +2,9 @@ var inventory = require("../models/inventory");
 var express = require("express");
 var router = express.Router();
 var middleware = require("../middleware/index");
-router.use(middleware);
 
-router.get("/inventory", isAdmin, function(req, res){
+
+router.get("/inventory", middleware.isAdmin, function(req, res){
     inventory.find({}, function(err, allInventory){
         if (err) {
             console.log(err);
@@ -15,7 +15,7 @@ router.get("/inventory", isAdmin, function(req, res){
     });
 });
 
-router.post("/inventory", isAdmin,function(req, res){
+router.post("/inventory", middleware.isAdmin,function(req, res){
     inventory.create(req.body.inventory, function(err, newInventory){
         if (err) {
             console.log(err);
@@ -27,7 +27,7 @@ router.post("/inventory", isAdmin,function(req, res){
     });
 });
 
-router.get("/inventory/:id", isAdmin,function(req, res){
+router.get("/inventory/:id", middleware.isAdmin,function(req, res){
     inventory.findOne({"_id": req.params.id}, function(err, foundInventory){
         if (err) {
             console.log(err);
@@ -38,7 +38,7 @@ router.get("/inventory/:id", isAdmin,function(req, res){
     });
 });
 
-router.get("/inventory/:id/delete", isAdmin,function(req, res){
+router.get("/inventory/:id/delete", middleware.isAdmin,function(req, res){
     inventory.deleteOne({"_id": req.params.id}, function(err, foundInventory){
         if (err) {
             console.log(err);
@@ -50,7 +50,7 @@ router.get("/inventory/:id/delete", isAdmin,function(req, res){
     });
 });
 
-router.put("/inventory/:id/update", isAdmin,function(req, res){
+router.put("/inventory/:id/update", middleware.isAdmin,function(req, res){
     inventory.findByIdAndUpdate(req.params.id, req.body.inventory, function(err, updatedInventory){
         if (err) {
             console.log(err);

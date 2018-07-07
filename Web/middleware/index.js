@@ -1,15 +1,16 @@
-function isLoggedIn(req, res, next) {
+var middlewareObj = {};
+middlewareObj.isLoggedIn= function (req, res, next) {
     if (req.session.email) {
-        return next();
+         next();
      } else {
         res.redirect("/login");
      }
 }
 
-function isAdmin(req, res, next) {
+middlewareObj.isAdmin = function (req, res, next) {
     if (req.session.email) {
         if (req.session.role == 0) {
-            return next();
+            next();
         } else {
             res.redirect("/404");
         }
@@ -18,6 +19,9 @@ function isAdmin(req, res, next) {
      }
 }
 
-function isBooked(req, res, next) {
+middlewareObj.isBooked = function (req, res, next) {
     
 }
+
+
+module.exports = middlewareObj;
