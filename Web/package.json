@@ -22,6 +22,7 @@
     "express-session": "^1.15.6",
     "method-override": "^2.3.10",
     "mongoose": "^5.2.1",
+    "msg91": "0.0.6",
     "nodemailer": "^4.6.7",
     "request": "^2.87.0"
   }
