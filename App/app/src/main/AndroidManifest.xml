@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginFarmer" />
-        <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".FarmerWorkspace" />
+        <activity android:name=".FamerWorkspaceActivity"></activity>
     </application>
 
 </manifest>
