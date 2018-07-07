@@ -12,6 +12,7 @@ var userSchema = mongoose.Schema({
     survey_no: String,
     rating: String,
     role: String,
-    survey_no_doc: String
+    survey_no_doc: String,
+    status: String
 });
 module.exports = mongoose.model("user", userSchema, "user");
