@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@color/colorAccent"
-            android:text="Regstration"
+            android:text="Registration"
             android:textColor="@android:color/black" />
 
 
