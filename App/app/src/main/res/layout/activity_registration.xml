@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#f8bbd0"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registration"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
+
+<!--        <ImageView
+            android:layout_width="137dp"
+            android:layout_height="134dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/registration">
+
+        </ImageView>
+        -->
+        <EditText
+            android:id="@+id/farmername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Farmer Name"
+            android:inputType="text"
+            android:textColorHighlight="#4e342e"
+            android:textColor="@android:color/white"
+            android:textColorHint="#4e342e" />
+
+        <EditText
+            android:id="@+id/farmeremail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/white"
+            android:textColorHint="#4e342e"  />
+        <EditText
+            android:id="@+id/farmerphonereg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Phone Number"
+            android:inputType="number"
+            android:textColor="@android:color/white"
+            android:textColorHint="#4e342e"  />
+        <EditText
+            android:id="@+id/farmertaluk"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Taluk"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textColorHint="#4e342e"  />
+        <EditText
+            android:id="@+id/farmerdistrict"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="District"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textColorHint="#4e342e"  />
+        <EditText
+            android:id="@+id/farmeraadhar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Aadhar"
+            android:inputType="Major Crops"
+            android:textColor="@android:color/white"
+            android:textColorHint="#4e3423"  />
+        <EditText
+            android:id="@+id/farmermajorcrops"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="text"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="#4e342e"  />
+
+        <Button
+            android:id="@+id/regsiterfarmerbt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@color/colorAccent"
+            android:text="Register"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
