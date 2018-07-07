@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "932971365125",
+    "firebase_url": "https://jpmchack.firebaseio.com",
+    "project_id": "jpmchack",
+    "storage_bucket": "jpmchack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932971365125:android:8e452b38e5e8a25c",
+        "android_client_info": {
+          "package_name": "monkfox.com.isap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932971365125-kjc5nl1bijchvap33oeq3of1iqsn08bn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "monkfox.com.isap",
+            "certificate_hash": "233388e3b9a718446eaff845170aedd790593dd6"
+          }
+        },
+        {
+          "client_id": "932971365125-708tfb0q6f8rmj0qlkrcektj11a6tltp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAESFop9ssNf58JPCiTwDRq16F6qJeTEEI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932971365125-708tfb0q6f8rmj0qlkrcektj11a6tltp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
