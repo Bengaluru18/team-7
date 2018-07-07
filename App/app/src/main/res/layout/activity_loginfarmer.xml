@@ -2,13 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
+    tools:context=".LoginFarmer">
 
 
     <LinearLayout
@@ -20,17 +17,38 @@
         android:padding="@dimen/activity_horizontal_margin">
 
 
-<!--        <ImageView
+        <ImageView
             android:layout_width="137dp"
             android:layout_height="134dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/folder" />-->
+           android:src="@drawable/loginimage"></ImageView>
 
-        <!-- Login Button -->
+
+
+        <EditText
+            android:id="@+id/farmerphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Phone Number"
+            android:inputType="number"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
+
+
+        <EditText
+            android:id="@+id/farmerpassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
 
         <Button
-            android:id="@+id/loginfarmerbt"
+            android:id="@+id/btn_login_farmer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -38,20 +56,5 @@
             android:text="Login"
             android:textColor="@android:color/black" />
 
-        <Button
-            android:id="@+id/regsiterfarmerbt"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@color/colorAccent"
-            android:text="Regstration"
-            android:textColor="@android:color/black" />
-
-
-        <!-- Link to Login Screen -->
-
-
     </LinearLayout>
-
-
 </LinearLayout>
