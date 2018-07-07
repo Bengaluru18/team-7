@@ -170,4 +170,33 @@ router.get("/api/user/:id", function(req, res){
     });
 });
 
+router.get("/api/inventory/", function(req, res){
+    inventory.find({}, function(err, allInventory){
+        if (err) {
+            console.log(err);
+            res.send({"success": true});
+        } else {
+            var inv = [];
+            allInventory.forEach(function(x){
+                if (x['quantity'] > 0) {
+                    inv.push(x);
+                }
+                res.send({"success": true, "inventory": inv}); 
+            });
+        }
+    });
+});
+
+router.get("/api/rent/:id/return", function(req, res){
+    rent.findByIdAndUpdate(req.params.id, {"status": "completed"},function(err, foundRent){
+        if (err) {
+            console.log(err);
+            res.send({"success": false});
+        } else {
+            inventory.findOneAndUpdate({"name": foundRent['mname']}, {$inc: {"quantity": 1}});
+            res.send({"success": true, "rent": foundRent});
+        }
+    });
+});
+
 module.exports = router;
