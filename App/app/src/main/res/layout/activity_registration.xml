@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:hint="Aadhar"
-            android:inputType="text"
+            android:inputType="Major Crops"
             android:textColor="@android:color/white"
             android:textColorHint="#4e342e"  />
         <EditText
