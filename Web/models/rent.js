@@ -4,11 +4,15 @@ var rentSchema = mongoose.Schema({
     price: String, 
     email: String, 
     phone: String,
-    machine: String,
+    mname: String,
+    mtype: String,
     payment_id: String,
     dateSlot: String,
     hobli: String,
     taluk: String, 
-    district: String
+    district: String,
+    status: String,
+    pending_payment: String,
+    mode: String
 });
 module.exports = mongoose.model("rent", rentSchema, "rent");

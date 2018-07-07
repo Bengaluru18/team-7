@@ -17,7 +17,7 @@ var compression = require('compression');
 var sess;
 var nodemailer = require('nodemailer');
 var flash = require("connect-flash");
-
+var creds = require("./creds");
 mongoose.connect("mongodb://razor:hailhydra3@ds129321.mlab.com:29321/isap_rent");
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -53,6 +53,8 @@ app.use(middleware);
 app.use(inventoryRoutes);
 app.use(userRoutes);
 app.use(rentRoutes);
+app.use(creds);
+
 
 app.get("/*", function(req, res){
     res.send("Sorry, page not found...What are you doing with your life ?");    

@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var examSchema = mongoose.Schema({
     name: String,
-    price: String, 
+    password: String, 
     email: String, 
     phone: String,
     hobli: String,
@@ -11,6 +11,7 @@ var examSchema = mongoose.Schema({
     major_crops: String,
     survey_no: String,
     rating: String,
-    role: String
+    role: String,
+    survey_no_doc: String
 });
 module.exports = mongoose.model("user", examSchema, "user");
