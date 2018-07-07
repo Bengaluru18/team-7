@@ -2,11 +2,9 @@ var rent = require("../models/rent");
 var express = require("express");
 var router = express.Router();
 var middleware = require("../middleware/index");
-var creds = require("./creds");
-router.use(creds);
-router.use(middleware);
+var creds = require("../creds");
 
-router.get("/rent", isAdmin, function(req, res){
+router.get("/rent", middleware.isAdmin, function(req, res){
     rent.find({}, function(err, allRent){
         if (err) {
             console.log(err);
@@ -18,7 +16,7 @@ router.get("/rent", isAdmin, function(req, res){
 });
 
 
-router.get("/rent/:id", isAdmin, function(req, res){
+router.get("/rent/:id", middleware.isAdmin, function(req, res){
     rent.findById(req.params.id, function(err, foundRent){
         if (err) {
             console.log(err);
@@ -29,7 +27,7 @@ router.get("/rent/:id", isAdmin, function(req, res){
     });
 });
 
-router.get("/rent/:id/approve",isAdmin, function(req, res){
+router.get("/rent/:id/approve",middleware.isAdmin, function(req, res){
     rent.findByIdAndUpdate(req.params.id, {"status": "confirmed"}, function(err, updatedRent){
         if (err) {
             console.log(err);
@@ -56,7 +54,7 @@ router.get("/rent/:id/approve",isAdmin, function(req, res){
 }); 
 
 
-router.get("/rent/:id/approvePayment",isAdmin, function(req, res){
+router.get("/rent/:id/approvePayment",middleware.isAdmin, function(req, res){
     rent.findByIdAndUpdate(req.params.id, {"pending_payment": "false"}, function(err, updatedRent){
         if (err) {
             console.log(err);
@@ -68,7 +66,7 @@ router.get("/rent/:id/approvePayment",isAdmin, function(req, res){
     }); 
 }); 
 
-router.get("/rent/unpaid", isAdmin, function(req, res){
+router.get("/rent/unpaid", middleware.isAdmin, function(req, res){
     rent.find({"status": "confirmed","pending_payment": "true"}, function(err, pendingRent){
         if (err) {
             console.log(err);
@@ -81,7 +79,7 @@ router.get("/rent/unpaid", isAdmin, function(req, res){
 });
 
 
-router.get("/rent/unapproved", isAdmin, function(req, res){
+router.get("/rent/unapproved", middleware.isAdmin, function(req, res){
     rent.find({"status": "unconfirmed"}, function(err, unconfirmedRent){
         if (err) {
             console.log(err);
@@ -92,7 +90,7 @@ router.get("/rent/unapproved", isAdmin, function(req, res){
     });
 });
 
-router.get("/rent/:id/cancel", isAdmin, function(req, res){
+router.get("/rent/:id/cancel", middleware.isAdmin, function(req, res){
     rent.findByIdAndUpdate(req.params.id, {"status": "cancelled"}, function(err, foundRent){
         if (err) {
             console.log(err);
