@@ -130,10 +130,44 @@ router.get("/api/rent/:id/approve", function(req, res){
 
 }   else {
     res.send({"success": false, "quantity": 0});
-}
     }
-         
+}
+    });
 });
 }); 
+
+
+router.post("/api/register", function(req, res){
+    user.findOne({"phone": req.body.user.phone}, function(err, foundUser) {
+        if (foundUser) {
+    user.create(req.body.user, function(err, newUser){
+        if (err) {
+            console.log(err);
+            res.send({"success": false});
+        } else {
+            res.send({"success": true, "user": newUser})
+        }
+    });
+} else {
+    res.send({"success": false, "message": "User already there!"});
+}
+});
+});
+
+
+router.get("/api/user/:id", function(req, res){
+    user.find({"phone": req.body.user.phone}, function(err, foundUser) {
+        if (err) {
+            console.log(err);
+            res.send({"success": false});
+        }  else {
+            if (foundUser) {
+                res.send({"success": false, "user": foundUser});
+            } else {
+                res.send({"success": false, "message": "User not found!"});
+            }
+        }
+    });
+});
 
 module.exports = router;
