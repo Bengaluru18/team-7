@@ -30,7 +30,7 @@
         <!-- Login Button -->
 
         <Button
-            android:id="@+id/verfier_button_id"
+            android:id="@+id/loginfarmerbt"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -39,7 +39,7 @@
             android:textColor="@android:color/black" />
 
         <Button
-            android:id="@+id/admin_button_id"
+            android:id="@+id/regsiterfarmerbt"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
