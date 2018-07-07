@@ -29,15 +29,8 @@
 
         <!-- Login Button -->
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/isap_logo" />
-
         <Button
-            android:id="@+id/loginfarmerbt"
+            android:id="@+id/loginfarmerbtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -46,7 +39,7 @@
             android:textColor="@android:color/black" />
 
         <Button
-            android:id="@+id/regsiterfarmerbt"
+            android:id="@+id/regsiterfarmerbtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
