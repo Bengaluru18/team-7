@@ -34,7 +34,7 @@ router.post("/api/rent/", function(req, res){
             var mailOptions = {
                 from: newRent['name']+'<hello@jaysinha.me>', 
                 to: 'hello@jaysinha.me', 
-                subject: 'Booking Confirmed: ' + newRent['_id'], 
+                subject: 'Booking Requested: ' + newRent['_id'], 
                 html: 'Name: <b>' + newRent['name']+"</b><br>Approve Link: " + "/api/rent/"+newRent['_id'] +"/approve"     // html body
             };
 
@@ -57,11 +57,18 @@ else {
 });
 
 router.get("/api/rent/:id/cancel", function(req, res){
+    inventory.findOne({"name": req.body.rent.mname}, function(err, foundInventory){
+        if (err) {
+            console.log(err);
+            res.send({"success": false});
+        } else {
+        
     rent.findByIdAndUpdate(req.params.id, {"status": "cancelled"}, function(err, foundRent){
         if (err) {
             console.log(err);
             res.send({"success": false});
         } else {
+            inventory.findByIdAndUpdate(foundInventory['_id'], {"quantity": foundInventory['quantity']+1});
             if (foundRent['pending_payment'] == "false" && foundRent['mode']=='Online') {
                 //Logic to initiate refund from payment gateway
 
@@ -77,6 +84,7 @@ router.get("/api/rent/:id/cancel", function(req, res){
             }
         }
     });
+}
 });
 
 router.get("/api/rent/:id/approve", function(req, res){
@@ -93,11 +101,18 @@ router.get("/api/rent/:id/approve", function(req, res){
             res.send({"success": false});
         } else {
             
-            
+            inventory.findByIdAndUpdate(foundInventory['_id'], {"quantity": foundInventory['quantity']-1});
             var mailOptions = {
                 from: 'Support'+'<hello@jaysinha.me>', 
                 to: req.body.email, 
-                subject: 'Booking Cancelled: ' + updatedRent['_id'], 
+                subject: 'Booking Approved: ' + updatedRent['_id'], 
+                html: 'Name: <b>' + updatedRent['name'] + '</b><br>Booking Date: <b>' + updatedRent['startDate'] + " - " + updatedRent['endDate']+"</b>"// html body
+            };
+
+            var mailOptions = {
+                from: 'Support'+'<hello@jaysinha.me>', 
+                to: updatedRent['email'], 
+                subject: 'Booking Approved: ' + updatedRent['_id'], 
                 html: 'Name: <b>' + updatedRent['name'] + '</b><br>Booking Date: <b>' + updatedRent['startDate'] + " - " + updatedRent['endDate']+"</b>"// html body
             };
 
