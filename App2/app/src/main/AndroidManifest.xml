@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginFarmerActivity"></activity>
+        <activity android:name=".LoginFarmerActivity" />
+        <activity android:name=".FarmerWorkspaceActivity"></activity>
     </application>
 
 </manifest>
