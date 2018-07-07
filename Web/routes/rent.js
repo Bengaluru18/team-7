@@ -28,29 +28,36 @@ router.get("/rent/:id", middleware.isAdmin, function(req, res){
 });
 
 router.get("/rent/:id/approve",middleware.isAdmin, function(req, res){
+    inventory.findOne({"name": req.body.rent.mname}, function(err, foundInventory){
+        if (err) {
+            console.log(err);
+            res.send({"success": false});
+        } else {
+        
     rent.findByIdAndUpdate(req.params.id, {"status": "confirmed"}, function(err, updatedRent){
         if (err) {
             console.log(err);
             res.redirect("/404");
         } else {
             req.flash("success", "Booking Status Updated!");
-            
+            inventory.findByIdAndUpdate(foundInventory['_id'], {"quantity": foundInventory['quantity']-1});
             var mailOptions = {
                 from: 'Support'+'<hello@jaysinha.me>', 
-                to: req.body.email, 
+                to: 'hello@jaysinha.me', 
                 subject: 'Booking Confirmed: ' + updatedRent['_id'], 
-                html: 'Name: <b>' + foundUser['username'] + '</b><br>Password: <b>'+ foundUser['password'] + '</b>'// html body
+                html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
             };
 
             var mailOptions2 = {
                 from: 'Support'+'<hello@jaysinha.me>', 
-                to: req.body.email, 
-                subject: 'Booking Confirmed: ' + updatedRent['_id'], 
-                html: 'Username: <b>' + foundUser['username'] + '</b><br>Password: <b>'+ foundUser['password'] + '</b>'// html body
+                to: updatedRent['email'], 
+                subject: 'Booking Approved: ' + updatedRent['_id'], 
+                html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
             };
-            res.redirect("/rent/"+updatedRent['_id']);
+            res.redirect("/rent");
         }
     }); 
+}
 }); 
 
 
@@ -91,31 +98,39 @@ router.get("/rent/unapproved", middleware.isAdmin, function(req, res){
 });
 
 router.get("/rent/:id/cancel", middleware.isAdmin, function(req, res){
+    inventory.findOne({"name": req.body.rent.mname}, function(err, foundInventory){
+        if (err) {
+            console.log(err);
+            res.send({"success": false});
+        } else {
+        
+        if (foundInventory['quantity'] > 0) {
     rent.findByIdAndUpdate(req.params.id, {"status": "cancelled"}, function(err, foundRent){
         if (err) {
             console.log(err);
             res.redirect("/404");
         } else {
+            inventory.findByIdAndUpdate(foundInventory['_id'], {"quantity": foundInventory['quantity']+1});
+
             if (foundRent['pending_payment'] == "false" && foundRent['mode']=='Online') {
                 //Logic to initiate refund from payment gateway
 
             } else {
                 var mailOptions = {
                     from: 'Support'+'<hello@jaysinha.me>', 
-                    to: req.body.email, 
+                    to: updatedRent['email'], 
                     subject: 'Booking Cancelled: ' + updatedRent['_id'], 
-                    html: 'Name: <b>' + foundUser['username'] + '</b><br>Password: <b>'+ foundUser['password'] + '</b>'// html body
-                };
-    
-                var mailOptions2 = {
-                    from: 'Support'+'<hello@jaysinha.me>', 
-                    to: req.body.email, 
-                    subject: 'Booking Cancelled: ' + updatedRent['_id'], 
-                    html: 'Username: <b>' + foundUser['username'] + '</b><br>Password: <b>'+ foundUser['password'] + '</b>'// html body
+                    html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
                 };
                 res.redirect("/rent");
             }
         }
+    });
+} else {
+    res.send({"success": false, "quantity": 0});
+}
+        }
+        });
     });
 });
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_booking"
+            android:title="@string/nav_book" />
+        <item
+            android:id="@+id/nav_returning"
+            android:title="@string/nav_return" />
+        <item
+            android:id="@+id/nav_cancling"
+            android:title="@string/nav_cancel" />
+        <item
+            android:id="@+id/nav_profilepage"
+
+            android:title="@string/nav_profile" />
+    </group>
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_logoutmenu"
+
+                android:title="@string/nav_logout" />
+
+        </menu>
+    </item>
+
+</menu>
