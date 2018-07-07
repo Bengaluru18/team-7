@@ -54,6 +54,27 @@ router.get("/rent/:id/approve",middleware.isAdmin, function(req, res){
                 subject: 'Booking Approved: ' + updatedRent['_id'], 
                 html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
             };
+
+            creds.transporter.sendMail(mailOptions, function(error, info){
+                if(error){
+                    return console.log(error);
+                }
+                console.log('Message sent: ' + info.response);
+            });
+
+            creds.transporter.sendMail(mailOptions2, function(error, info){
+                if(error){
+                    return console.log(error);
+                }
+                console.log('Message sent: ' + info.response);
+            });
+
+            var message = 'Machine Ordered: ' + updatedRent['mname'] + '. Our executive will get in touch with you shortly. Team ISAP!';
+                creds.msg91.send(updatedRent['phone'], message, function(err, response){
+                    // console.log(err);
+                    console.log(response);
+            });
+
             res.redirect("/rent");
         }
     }); 
@@ -61,12 +82,61 @@ router.get("/rent/:id/approve",middleware.isAdmin, function(req, res){
 }); 
 
 
+router.post("/rent/", function(req, res){
+    inventory.findOne({"name": req.body.rent.mname}, function(err, foundInventory){
+        if (err) {
+            console.log(err);
+            res.send({"success": false});
+        } else {
+        
+        if (foundInventory['quantity'] > 0) {
+        rent.create(req.body.rent, function(err, newRent){
+        if (err) {
+            console.log(err);
+            res.send({"success": false});
+        } else {
+            // inventory.findByIdAndUpdate(foundInventory['_id'], {"quantity": foundInventory['quantity']-1});
+            var mailOptions = {
+                from: newRent['name']+'<hello@jaysinha.me>', 
+                to: 'hello@jaysinha.me', 
+                subject: 'Booking Requested: ' + newRent['_id'], 
+                html: 'Name: <b>' + newRent['name']+"</b><br>Approve Link: " + "/api/rent/"+newRent['_id'] +"/approve"     // html body
+            };
+
+            transporter.sendMail(mailOptions, function(error, info){
+                if(error){
+                    return console.log(error);
+                }
+                console.log('Message sent: ' + info.response);
+            });
+            var message = 'Service Requested: ' + order['typeOfService'] + '. Our executive will get in touch with you shortly. Team WatUWant!';
+                    creds.msg91.send(updatedRent['phone'], message, function(err, response){
+                        // console.log(err);
+                        console.log(response);
+                });
+            res.redirect("/pending");
+        }
+    });
+}
+else {
+    res.send({"success": false, "quantity": 0});
+} 
+}
+});
+});
+
 router.get("/rent/:id/approvePayment",middleware.isAdmin, function(req, res){
     rent.findByIdAndUpdate(req.params.id, {"pending_payment": "false"}, function(err, updatedRent){
         if (err) {
             console.log(err);
             res.redirect("/404");
         } else {
+
+            var message = 'Machine Ordered: ' + updatedRent['mname'] + '. Payment Approved. Team ISAP!';
+                creds.msg91.send(updatedRent['phone'], message, function(err, response){
+                    // console.log(err);
+                    console.log(response);
+            });
             req.flash("success", "Payment Status updated!");
             res.redirect("/rent/"+updatedRent['_id']);
         }
@@ -80,7 +150,7 @@ router.get("/rent/unpaid", middleware.isAdmin, function(req, res){
             res.redirect("/404");
         } else {
             // req.flash("su")
-            res.render("pending", {pendingRent: pendingRent});
+            res.render("pending", {allRent: pendingRent});
         }
     });
 });
@@ -92,7 +162,7 @@ router.get("/rent/unapproved", middleware.isAdmin, function(req, res){
             console.log(err);
             res.redirect("/404");
         } else {
-            res.render("unconfirmed", {unconfirmedRent: unconfirmedRent});
+            res.render("unconfirmed", {allRent: unconfirmedRent});
         }
     });
 });
@@ -122,6 +192,21 @@ router.get("/rent/:id/cancel", middleware.isAdmin, function(req, res){
                     subject: 'Booking Cancelled: ' + updatedRent['_id'], 
                     html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
                 };
+
+                creds.transporter.sendMail(mailOptions, function(error, info){
+                    if(error){
+                        return console.log(error);
+                    }
+                    console.log('Message sent: ' + info.response);
+                });
+    
+    
+                var message = 'Service Ordered: ' + order['typeOfService'] + '. Our executive will get in touch with you shortly. Team WatUWant!';
+                    creds.msg91.send(updatedRent['phone'], message, function(err, response){
+                        // console.log(err);
+                        console.log(response);
+                });
+
                 res.redirect("/rent");
             }
         }

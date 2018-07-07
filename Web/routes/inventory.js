@@ -22,7 +22,7 @@ router.post("/inventory", middleware.isAdmin,function(req, res){
             res.redirect("/404");
         } else {
             req.flash("success", "New Inventory Added");
-            res.render("/inventory/"+newInventory['_id']);
+            res.redirect("/inventory/"+newInventory['_id']);
         }
     });
 });

@@ -28,35 +28,34 @@ label:hover {
       <tr>
         <th>Name</th>
         <th>Price</th>
-        <th>Email</th>
+        <!-- <th>Email</th> -->
         <th>Phone</th>
         <th>Machine Name</th>
-        <th>Pay ID</th>
-        <th>Hobli</th>
-        <th>Taluk</th>
+        <th>Mode</th>
+        <!-- <th>Hobli</th> -->
+        <!-- <th>Taluk</th> -->
         <th>District</th>
-        <th>Payment Pending</th>
+        <!-- <th>Payment Pending</th> -->
         
       </tr>
      <!-- <tr>
       <label><input type="checkbox" />Option 1</label></tr>-->
     </thead>
     <tbody>
+      <% allRent.forEach(function(x){ %>
       <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td><%= x.name %></td>
+        <td><%= x.price %></td>
+        <!-- <td><%= x.email %></td> -->
+        <td><%= x.phone  %></td>
+        <td><%= x.mname %></td>
+        <td><%= x.mode %></td>
+        <!-- <td><%=  %></td> -->
+        <!-- <td><%=  %></td> -->
+        <td><%= x.district %></td>
+        <td><a href="/rent/<%= x._id %>/delete"><button>Delete</button></a></td>  
       </tr>
-     <!-- <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>-->
+      <% }) %>
     </tbody>
   </table>
 </div>

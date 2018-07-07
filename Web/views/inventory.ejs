@@ -17,11 +17,21 @@
       <tr>
       	 <th>Name</th>
       	 <th>Model Year</th>
-      	 <th>Model Type</th>
-      	 <th>Model Name</th>
+      	 <th>Type</th>
+      	 <!-- <th>Model Name</th> -->
       	 <th>Quantity</th>
       	 </tr>
     </thead>
+  
    <tbody>
-   	
+     <% allInventory.forEach(function(x){ %>
+    <tr>
+      <td><%= x.name %></td>
+      <td><%= x.make %></td>
+      <td><%= x.type %></td>
+      <td><%= x.quantity %></td>
+      <td><a href="/inventory/<%= x._id %>/delete"><button>Delete</button></a></td>  
+    </tr>
+    <% }) %>
    </tbody>
+  </table>
