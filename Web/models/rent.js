@@ -1,7 +1,5 @@
 var mongoose = require("mongoose");
-
-
-var examSchema = mongoose.Schema({
+var rentSchema = mongoose.Schema({
     name: String,
     price: String, 
     email: String, 
@@ -13,4 +11,4 @@ var examSchema = mongoose.Schema({
     taluk: String, 
     district: String
 });
-module.exports = mongoose.model("rent", examSchema, "rent");
+module.exports = mongoose.model("rent", rentSchema, "rent");
