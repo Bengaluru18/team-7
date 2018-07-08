@@ -5,7 +5,7 @@ var router = express.Router();
 var middleware = require("../middleware/index");
 var creds = require("../creds");
 
-router.get("/rent", middleware.isAdmin, function(req, res){
+router.get("/rent", middleware.isLoggedIn, function(req, res){
     inventory.find({}, function(err, allInventory){
         if (err) {
             console.log(err);
@@ -17,11 +17,22 @@ router.get("/rent", middleware.isAdmin, function(req, res){
                     inv.push(x);
                 } 
             });
-            res.render("rent", {allRent: x});
+            res.render("listing", {allRent: x});
         }
     });
 });
 
+router.get("/admin/rent", middleware.isAdmin, function(req, res){
+    rent.find({}, function(err, allRent){
+        if (err) {
+            console.log(err);
+            res.redirect("/404");
+        } else {
+            
+            res.render("rent", {allRent: allRent});
+        }
+    });
+});
 
 router.get("/rent/:id", middleware.isAdmin, function(req, res){
     rent.findById(req.params.id, function(err, foundRent){
@@ -88,8 +99,20 @@ router.get("/rent/:id/approve",middleware.isAdmin, function(req, res){
 }
 }); 
 
+router.get("/book", isLoggedIn, function(req, res){
+    res.render("book");
+});
 
-router.post("/rent", function(req, res){
+router.post("/dateSelect", isLoggedIn, function(req, res){
+    var date1 = req.body.startDate;
+    var date2 = req.body.endDate;
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+    var hours = diffDays*24;
+    res.redirect("/rent");
+});
+
+router.post("/rent", middleware.isLoggedIn, function(req, res){
     inventory.findOne({"name": req.body.rent.mname}, function(err, foundInventory){
         if (err) {
             console.log(err);
@@ -116,8 +139,8 @@ router.post("/rent", function(req, res){
                 }
                 console.log('Message sent: ' + info.response);
             });
-            var message = 'Service Requested: ' + order['typeOfService'] + '. Our executive will get in touch with you shortly. Team WatUWant!';
-                    creds.msg91.send(updatedRent['phone'], message, function(err, response){
+            var message = 'Service Requested: ' + updatedRent['mname'] + '. Our executive will get in touch with you shortly. Team ISAP!';
+                    creds.msg91.send('8660840789', message, function(err, response){
                         // console.log(err);
                         console.log(response);
                 });
@@ -208,7 +231,7 @@ router.get("/rent/:id/cancel", middleware.isAdmin, function(req, res){
                 });
     
     
-                var message = 'Service Ordered: ' + order['typeOfService'] + '. Our executive will get in touch with you shortly. Team WatUWant!';
+                var message = 'Service Cancelled: ' + updatedRent['mname'] + '. Our executive will get in touch with you shortly. Team ISAP!';
                     creds.msg91.send(updatedRent['phone'], message, function(err, response){
                         // console.log(err);
                         console.log(response);

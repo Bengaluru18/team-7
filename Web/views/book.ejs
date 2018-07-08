@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!--label {
+ border:1px solid #ccc;
+ padding:10px;
+ margin:0 0 10px;
+ display:block; 
+}
+
+label:hover {
+ background:#eee;
+ cursor:pointer;
+}-->
+</head>
+<body>
+<div class="container">
+  <h2>Select Date Range</h2>
+  <form action="/dateSelect" method="POST">
+    <label>Start Date</label><br>
+    <input type="date" id="datePicker" name="startDate">
+    <label>End Date</label><br>
+    <input type="date"  name="endDate">
+</form>
+</div>  
+</body>
+</html>
+<script>
+    $(document).ready( function() {
+    var now = new Date();
+    var month = (now.getMonth() + 1);               
+    var day = now.getDate();
+    if (month < 10) 
+        month = "0" + month;
+    if (day < 10) 
+        day = "0" + day;
+    var today = now.getFullYear() + '-' + month + '-' + day;
+    $('#datePicker').val(today);
+});
+</script>
