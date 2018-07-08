@@ -8,13 +8,9 @@ var rentSchema = mongoose.Schema({
     mname: String,
     mtype: String,
     payment_id: String,
-    endDate: Date,
-    startDate: Date,
-    hobli: String,
-    taluk: String, 
-    district: String,
     status: String,
     pending_payment: String,
-    mode: String
+    mode: String,
+    days: Number
 });
 module.exports = mongoose.model("rent", rentSchema, "rent");

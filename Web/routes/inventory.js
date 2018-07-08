@@ -27,13 +27,18 @@ router.post("/inventory", middleware.isAdmin,function(req, res){
     });
 });
 
+router.get("/addInventory", middleware.isAdmin, function(req, res){
+    res.render("addInventory");
+});
+
 router.get("/inventory/:id", middleware.isAdmin,function(req, res){
     inventory.findOne({"_id": req.params.id}, function(err, foundInventory){
         if (err) {
             console.log(err);
             res.redirect("/404");
         } else {
-            res.render("inventorydet", {inventory: foundInventory});
+            res.redirect("/inventory");
+            // res.render("inventorydet", {inventory: foundInventory});
         }
     });
 });

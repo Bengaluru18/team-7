@@ -11,7 +11,7 @@
 <body>
 <div class="container">
   <h2>Management</h2>
-              
+  <a href="/addInventory"><button >Add Inventory</button></a>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -26,11 +26,11 @@
    <tbody>
      <% allInventory.forEach(function(x){ %>
     <tr>
-      <td><%= x.name %></td>
-      <td><%= x.make %></td>
-      <td><%= x.type %></td>
-      <td><%= x.quantity %></td>
-      <td><a href="/inventory/<%= x._id %>/delete"><button>Delete</button></a></td>  
+      <td ><span style="color:green;"><%= x.name %></span></td>
+      <td ><span style="color:green;"><%= x.make %></span></td>
+      <td ><span style="color:green;"><%= x.type %></span></td>
+      <td ><span style="color:green;"><%= x.quantity %></span></td>
+      <td ><a href="/inventory/<%= x._id %>/delete"><button>Delete</button></a></td>  
     </tr>
     <% }) %>
    </tbody>

@@ -57,7 +57,7 @@ label:hover {
         <!-- <td><%=  %></td> -->
         <!-- <td><%=  %></td> -->
         <td><%= x.district %></td>
-        <% if (x.status == "approved") { %>
+        <% if (x.status == true) { %>
             <td><span style="color:green;">Approved</span></td>
             <% } else { %>
                 <td><a href="/user/<%= x._id %>/approve"><button>Approve</button></a></td>  

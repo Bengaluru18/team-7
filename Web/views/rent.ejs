@@ -34,7 +34,7 @@ label:hover {
         <th>Mode</th>
         <!-- <th>Hobli</th> -->
         <!-- <th>Taluk</th> -->
-        <th>District</th>
+        <!-- <th>District</th> -->
         <!-- <th>Payment Pending</th> -->
         
       </tr>
@@ -52,8 +52,9 @@ label:hover {
         <td><%= x.mode %></td>
         <!-- <td><%=  %></td> -->
         <!-- <td><%=  %></td> -->
-        <td><%= x.district %></td>
-        <td><a href="/rent/<%= x._id %>/cancel"><button>Cancel</button></a></td>  
+        <!-- <td><%= x.district %></td> -->
+        <td><a href="/rent/<%= x._id %>/approve/<%= x.mname %>"><button>Approve</button></a></td>
+        <td><a href="/rent/<%= x._id %>/cancel/<%= x.mname %>"><button>Cancel</button></a></td>  
       </tr>
       <% }) %>
     </tbody>

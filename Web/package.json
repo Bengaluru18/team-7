@@ -22,6 +22,7 @@
     "express-fileupload": "^0.4.0",
     "express-session": "^1.15.6",
     "fs": "0.0.1-security",
+    "json2xls": "^0.1.2",
     "method-override": "^2.3.10",
     "mongoose": "^5.2.1",
     "msg91": "0.0.6",

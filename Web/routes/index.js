@@ -34,13 +34,18 @@ router.post("/login", function(req, res){
                 console.log(err);
                 res.redirect("/");
             } else {
-                if (foundUser) {
+                if (!foundUser) {
                     res.redirect("/");
                 } else {
+                    if (req.body.password == foundUser['password']) {
                     sess.email = foundUser['phone'];
                     sess.name = foundUser['name'];
-                    sess.role = user['role'];
+                    sess.role = foundUser['role'];
+                    console.log(req.session.email);
                     res.redirect("/");
+                    } else {
+                        res.redirect("/");
+                    }
                 }
             }
         });
@@ -57,34 +62,33 @@ router.get("/signup", function(req, res){
 });
 
 router.post("/signup", function(req, res){
+    sess = req.session;
     if (sess.email) {
         res.redirect("/");
     } else {
+        console.log(req.body.user);
         req.body.user['role'] = 4;
+        req.body.user['status'] = false;
         user.create(req.body.user, function(err, newUser){
-            sess.email = user['phone'];
-            sess.name = user['name'];
-            sess.role = user['role'];
-            var sampleFile = req.files.file;
-        // targetPath = path.resolve('./uploads/'+req.body.aadhar +'.png');
-    if (path.extname(req.files.file.name).toLowerCase() === '.png') {
-        // fs.rename(tempPath, targetPath, function(err) {
-        //     if (err) throw err;
-        //     console.log("Upload completed!");
-        // });
-        sampleFile.mv('./uploads/'+ req.body.phone + '.png', function(err) {
-            if (err)
-              return res.status(500).send(err);
+            sess.email = newUser['phone'];
+            sess.name = newUser['name'];
+            sess.role = newUser['role'];
+            // var sampleFile = req.files.file;
+        
+    // if (path.extname(req.files.file.name).toLowerCase() === '.png') {
+    //     sampleFile.mv('./uploads/'+ req.body.phone + '.png', function(err) {
+    //         if (err)
+    //           return res.status(500).send(err);
          
-            console.log('Upload');
-          }); 
-    }
-     else {
-        fs.unlink(tempPath, function () {
-            if (err) throw err;
-            console.error("Only .png files are allowed!");
-        });
-    }
+    //         console.log('Upload');
+    //       }); 
+    // }
+    //  else {
+    //     fs.unlink(tempPath, function () {
+    //         if (err) throw err;
+    //         console.error("Only .png files are allowed!");
+    //     });
+    // }
             res.redirect("/");
         });
     }

@@ -15,7 +15,7 @@ router.get("/user",middleware.isAdmin, function(req, res){
 });
 
 router.get("/user/:id/approve",middleware.isAdmin, function(req, res){
-    user.findByIdAndUpdate(req.params.id, {"status": "approved" },function(err, updatedUser){
+    user.findByIdAndUpdate(req.params.id, {"status": true },function(err, updatedUser){
         if (err) {
             console.log(err);
             res.redirect("/");
