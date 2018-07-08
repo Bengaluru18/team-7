@@ -81,36 +81,36 @@ span.psw {
 </style>
 </head>
 <body><br>
-	<h4>Login Form</h4>
+	<h4>Add Inventory</h4>
 
-<form action="/signup" method="POST"><!--Change this-->
+<form action="/inventory" method="POST"><!--Change this-->
  <!-- <div class="img">
     <img src="Loginlogo.png" alt="LOGO" class="avatar">
   </div>
 -->
   <div class="container">
-    <label for="phone"><b>Username</b></label>
-    <input type="text" placeholder="Enter 10 digit phone number" name="user['phone']" required>
-
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="user['password']" required>
-
     <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="user['name']" required>
+    <input type="text" placeholder="Enter name of Machine" name="inventory['name']" required>
 
-    <label for="Email"><b>Email</b></label>
-    <input type="text" placeholder="Enter e-Mail address" name="user['email']" >
+    <!-- <label for="password"><b>Password</b></label> -->
+    <!-- <input type="password" placeholder="Enter Password" name="user['password']" required> -->
 
-    <label for="taluk"><b>Taluk</b></label>
-    <input type="text" placeholder="Enter Taluk " name="user['taluk']" required>
+    <label for="si_no"><b>Serial Number</b></label>
+    <input type="text" placeholder="Enter Serial Number" name="inventory['si_no']" required>
 
-    <label for="district"><b>District</b></label>
-    <input type="text" placeholder="Enter District" name="user['district']" required>
+    <label for="pph"><b>Price Per Hour</b></label>
+    <input type="text" placeholder="Enter Price Per Hour" name="inventory['pph']" required>
 
-    <label for="aadhar"><b>Aadhar Number </b></label>
-    <input type="text" placeholder="Enter Aadhar Number" name="user['aadhar']" required>
+    <label for="make"><b>Make</b></label>
+    <input type="text" placeholder="Enter Make" name="inventory['make']" required>
 
-    <button type="submit">Sign Up</button>
+    <label for="type"><b>District</b></label>
+    <input type="text" placeholder="Enter Type" name="inventory['type']" required>
+
+    <label for="quantity"><b>Quantity </b></label>
+    <input type="text" placeholder="Enter Quantity" name="inventory['quantity']" required>
+
+    <button type="submit">Submit</button>
     <!-- <label> -->
       <!-- <input type="checkbox" checked="checked" name="remember"> Remember me -->
     <!-- </label> -->
@@ -119,7 +119,7 @@ span.psw {
   </div>
   <!-- <div class="container" > -->
   	<!-- <span class="psw">Forgot <a href="/forgot">Password</a></span> -->
-
+<!--  -->
   <!-- </div> -->
 <!--
   <div class="container" style="background-color:#f1f1f1">

@@ -1,16 +1,23 @@
 var rent = require("../models/rent");
+var inventory = require("../models/inventory");
 var express = require("express");
 var router = express.Router();
 var middleware = require("../middleware/index");
 var creds = require("../creds");
 
 router.get("/rent", middleware.isAdmin, function(req, res){
-    rent.find({}, function(err, allRent){
+    inventory.find({}, function(err, allInventory){
         if (err) {
             console.log(err);
             res.redirect("/404");
         } else {
-            res.render("rent", {allRent: allRent});
+            allInventory.forEach(function(x){
+                var inv = [];
+                if (x['quantity'] > 1) {
+                    inv.push(x);
+                } 
+            });
+            res.render("rent", {allRent: x});
         }
     });
 });
@@ -82,7 +89,7 @@ router.get("/rent/:id/approve",middleware.isAdmin, function(req, res){
 }); 
 
 
-router.post("/rent/", function(req, res){
+router.post("/rent", function(req, res){
     inventory.findOne({"name": req.body.rent.mname}, function(err, foundInventory){
         if (err) {
             console.log(err);

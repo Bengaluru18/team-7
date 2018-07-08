@@ -18,7 +18,9 @@ var flash = require("connect-flash");
 var creds = require("./creds");
 var apiRoutes = require("./API/index");
 mongoose.connect("mongodb://razor:hail3hydra@ds129321.mlab.com:29321/isap_rent");
-
+var fileUpload = require('express-fileupload');
+var path = require('path'),
+    fs = require('fs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/assets"));
 app.set("view engine", "ejs");
@@ -34,6 +36,7 @@ app.use(require("express-session")({
     }
 
 }));
+app.use(fileUpload());
 app.use(function(req, res, next){
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
@@ -57,6 +60,30 @@ app.use(indexRoutes);
 app.get("/", function(req, res){
     res.render("index");
 }); 
+
+app.get("/mybookings",middleware.isLoggedIn, function(req, res){
+    rent.find({"phone": req.session.email, "status": "approved"}, function(err, foundRent){
+        if(err) {
+            console.log(err);
+            res.redirect("/404");
+        } else {
+            res.render("mybookings", {allRent: allRent});         
+        }
+    });
+});
+
+app.get("/mypending", middleware.isLoggedIn, function(req, res){
+    rent.find({"phone": req.session.email, "status": "requested"}, function(err, foundRent){
+        if (err) {
+            console.log(err);
+            res.redirect("/");
+        } else {
+            res.render("mypending", {allRent: foundRent});
+        }
+    });
+});
+
+
 
 app.get("/*", function(req, res){
     res.send("Sorry, page not found...What are you doing with your life ?");    

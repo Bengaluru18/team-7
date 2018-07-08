@@ -5,8 +5,8 @@ var inventorySchema = mongoose.Schema({
     name: String,
     make: String,
     type: String,
-    model_name: String,
     si_no: String,
-    quantity: String
+    quantity: String,
+    pph: Number
 });
 module.exports = mongoose.model("inventory", inventorySchema, "inventory");

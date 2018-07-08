@@ -2,7 +2,9 @@ var express = require("express");
 var router = express.Router();
 var user = require("../models/user");
 var sess;
-
+var fileUpload = require('express-fileupload');
+var path = require('path'),
+    fs = require('fs');
 function isLoggedIn(req, res, next) {
     if (req.session.email) {
         return next();
@@ -46,10 +48,11 @@ router.post("/login", function(req, res){
 }); 
 
 router.get("/signup", function(req, res){
+    var sess = req.session;
     if (sess.email) {
         res.redirect("/");
     } else {
-        res.render("/signp");
+        res.render("signup");
     }
 });
 
@@ -62,6 +65,26 @@ router.post("/signup", function(req, res){
             sess.email = user['phone'];
             sess.name = user['name'];
             sess.role = user['role'];
+            var sampleFile = req.files.file;
+        // targetPath = path.resolve('./uploads/'+req.body.aadhar +'.png');
+    if (path.extname(req.files.file.name).toLowerCase() === '.png') {
+        // fs.rename(tempPath, targetPath, function(err) {
+        //     if (err) throw err;
+        //     console.log("Upload completed!");
+        // });
+        sampleFile.mv('./uploads/'+ req.body.phone + '.png', function(err) {
+            if (err)
+              return res.status(500).send(err);
+         
+            console.log('Upload');
+          }); 
+    }
+     else {
+        fs.unlink(tempPath, function () {
+            if (err) throw err;
+            console.error("Only .png files are allowed!");
+        });
+    }
             res.redirect("/");
         });
     }

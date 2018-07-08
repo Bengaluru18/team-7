@@ -36,8 +36,9 @@
 		<ul class="nav navbar-nav">
 			<% if (user != "none") {%>
 			<li>
-			<a href="index.html">Home</a>
+			<a href="/">Home</a>
 			</li>
+			<% if (role == 0) { %>
 			<li><!--v-->
 			<a href="">USER</a>
 			</li>
@@ -52,6 +53,16 @@
 			<!-- </li> -->
 			<li><!--v-->
 			<a href="/report">REPORT</a>
+			</li>
+			<% } %>
+
+			<li><!--v-->
+			<a href="/mypending">PENDING</a>
+			</li>
+
+
+			<li><!--v-->
+			<a href="/mybookings">Bookings</a>
 			</li>
 			<% } else { %>
 				<li><!--v-->
