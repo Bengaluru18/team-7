@@ -22,7 +22,8 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".FarmerWorkspace" />
         <activity android:name=".BookingActivity" />
-        <activity android:name=".BookNewViewBookingActivity"></activity>
+        <activity android:name=".EqupReviewActivity" />
+        <activity android:name=".BookNewActivity"></activity>
     </application>
 
 </manifest>
