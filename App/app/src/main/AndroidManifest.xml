@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".LoginFarmer" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".FarmerWorkspace" />
+       <!-- <activity android:name=".FarmerWorkspace" />-->
         <activity android:name=".BookingActivity" />
         <activity android:name=".EqupReviewActivity" />
         <activity android:name=".BookNewActivity"></activity>
