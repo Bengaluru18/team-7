@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "71128253",
+    "firebase_url": "https://appfirebaseproject-babe4.firebaseio.com",
+    "project_id": "appfirebaseproject-babe4",
+    "storage_bucket": "appfirebaseproject-babe4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71128253:android:8e452b38e5e8a25c",
+        "android_client_info": {
+          "package_name": "monkfox.com.isap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71128253-22imebju6ishejtqdp4rpha4kgmlpdk2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "monkfox.com.isap",
+            "certificate_hash": "a1017fa54ccab51abb017127a6c244de42fa5a86"
+          }
+        },
+        {
+          "client_id": "71128253-0qk90u7jl1v44upsb2o7u2nq80ekuph2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwwyXLKtLwjMY948wnP6GfG_2RwHcxJso"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71128253-0qk90u7jl1v44upsb2o7u2nq80ekuph2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

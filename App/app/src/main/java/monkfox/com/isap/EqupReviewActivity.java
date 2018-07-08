@@ -1,10 +1,10 @@
 package monkfox.com.isap;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
-public class EqupReviewActivity extends AppCompatActivity {
-
+public class EqupReviewActivity extends AppCompatActivity
+{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

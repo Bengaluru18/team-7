@@ -1,4 +1,5 @@
 package monkfox.com.isap;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 public class BookingActivity extends AppCompatActivity
 {
     // Array of strings...
@@ -24,11 +24,12 @@ public class BookingActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView tv= (TextView) view.findViewById(R.id.listviewbooking);
-                //Toast.makeText(BookingActivity.this, "clicked", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),tv.getText().toString(),Toast.LENGTH_LONG).show();
+                //TextView tv= (TextView) view.findViewById(R.id.listviewbooking);
+                Intent i = new Intent(BookingActivity.this,BookNewActivity.class);
+                startActivity(i);
+                Toast.makeText(BookingActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),tv.getText().toString(),Toast.LENGTH_LONG).show();
             }
         });
     }
-
 }
