@@ -129,7 +129,7 @@ app.get("/book/:hrs/:iid/:mode", middleware.isLoggedIn, function(req, res){
             // inventory.findByIdAndUpdate(foundInventory['_id'], {"quantity": foundInventory['quantity']-1});
             var mailOptions = {
                 from: newRent['name']+'<hello@jaysinha.me>', 
-                to: newRent['email'], 
+                to: 'razor.sinha.08@gmail.com', 
                 subject: 'Booking Requested: ' + newRent['_id'], 
                 html: 'Name: <b>' + newRent['name']+"</b><br>Approve Link: " + "/api/rent/"+newRent['_id'] +"/approve"     // html body
             };

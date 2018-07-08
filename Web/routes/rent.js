@@ -68,7 +68,7 @@ router.get("/rent/:id/approve/:mname",middleware.isAdmin, function(req, res){
 
             var mailOptions2 = {
                 from: 'Support'+'<hello@jaysinha.me>', 
-                to: updatedRent['email'], 
+                to: 'razor.sinha.08@gmail.com', 
                 subject: 'Booking Approved: ' + updatedRent['_id'], 
                 html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
             };
@@ -170,7 +170,7 @@ router.get("/rent/:id/cancel/:mname", middleware.isAdmin, function(req, res){
             } else {
                 var mailOptions = {
                     from: 'Support'+'<hello@jaysinha.me>', 
-                    to: updatedRent['email'], 
+                    to: 'razor.sinha.08@gmail.com', 
                     subject: 'Booking Cancelled: ' + updatedRent['_id'], 
                     html: 'Name: <b>' + updatedRent['name'] + '</b><br>Name: <b>'+ updatedRent['mname'] + '</b>'// html body
                 };
