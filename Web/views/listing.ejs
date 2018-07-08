@@ -30,7 +30,8 @@
       <td><%= x.make %></td>
       <td><%= x.type %></td>
       <td><%= hours %></td>
-      <td><a href="/book/<%= hours %>/<%= x._id %>"+><button>Book</button></a></td>  
+      <td><a href="/book/<%= hours %>/<%= x._id %>/offline"+><button>Pay after Booking</button></a></td>
+      <td><a href="/book/<%= hours %>/<%= x._id %>/online"+><button>Pay Online</button></a></td>  
     </tr>
     <% }) %>
    </tbody>
